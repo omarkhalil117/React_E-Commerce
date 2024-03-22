@@ -5,7 +5,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import NotFound from './Pages/NotFound';
 import Login from "./Pages/Login";
-
+import UserInfo from "./Pages/UserInfo";
 function Layout() {
     return(
     <>
@@ -46,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login/>,
+            },
+            {
+                path: "/userInfo",
+                element: <UserInfo/>
             }
         ]
     }

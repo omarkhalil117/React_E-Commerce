@@ -1,8 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import { useDispatch } from 'react-redux';
+import {getUserInfo} from '../store/slices/userSlice'
+import { Link } from 'react-router-dom';
 function Login() {
+  
+  const dispatch = useDispatch()
 
   const [isFormSubmitted, setIseFormSubmiited] = useState(false);
 
@@ -32,7 +36,9 @@ function Login() {
       !userInfoErrs.profilePic &&
       isFormSubmitted
     ) {
-      console.log("request ur api");
+      // console.log("request ur api");
+      dispatch(getUserInfo(userInfo))
+      console.log("Done !")
     }
   }, [userInfoErrs,isFormSubmitted]);
 
@@ -120,6 +126,16 @@ const handleSubmit = (e) => {
     validateForm();
   };
 
+const resetForm = () => {
+  setUserInfo({
+    name:"",
+    email:"",
+    password:"",
+    confirmPassword:"",
+    profilePic:""
+  })
+}
+
   return (
 
   <section className="vh-100 bg-image">
@@ -173,6 +189,11 @@ const handleSubmit = (e) => {
 
               </form>
 
+              <Link to="/userInfo">
+                <h5 className='m-4'>
+                  User Info
+                </h5>
+              </Link>
             </div>
           </div>
         </div>
